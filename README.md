@@ -23,3 +23,6 @@ You could setup a debug mode in VsCode like I did, check the `.vscode` folder fo
 
 ### Contacts:
 If you want to contact me for questions or simply commenting or using this code for your own feel free to reach out thru [GIT](https://github.com/pdmkdz)
+
+### GIT integration:
+To be able to use Git on your local check the [tutorial](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
