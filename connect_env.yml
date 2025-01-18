@@ -1,0 +1,9 @@
+name: connect_env
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python = 3.12
+  - pip
+  - numpy
+  - pyqt
