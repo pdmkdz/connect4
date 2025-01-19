@@ -1,0 +1,18 @@
+{
+    "files.eol": "\n",
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder};${PYTHONPATH}"
+    },
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./crosswatch",
+        "-p",
+        "*_test.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
+}
