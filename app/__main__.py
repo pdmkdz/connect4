@@ -30,6 +30,9 @@ class Connect4(QDialog):
         self.startGUI()
 
     def startGUI(self):
+
+        self.setWindowIcon(QtGui.QIcon('app/assets/ico4.png'))
+
         self.setWindowTitle(f'Connect 4 - v{__version_number__}')
 
         self.numRows = 6
@@ -39,6 +42,8 @@ class Connect4(QDialog):
         self.currentPlayer = 1
         
         self.reset_button.clicked.connect(lambda: self.resetGame())
+
+        self.info.clicked.connect(lambda: self.instructions())
 
         self.p1color.activated.connect(lambda: self.recolorBoard(1))
         self.p2color.activated.connect(lambda: self.recolorBoard(2))
@@ -157,7 +162,7 @@ class Connect4(QDialog):
 
         msg = QMessageBox()
         # msg.setIcon(QMessageBox.Warning)
-        msg.setWindowIcon(QtGui.QIcon('Connect_Four.gif'))
+        msg.setWindowIcon(QtGui.QIcon('app/assets/ico4.png'))
         msg.setText(
             f'<div style="text-align: center;">'
             f'<h3>Player {self.currentPlayer} wins!</h3>'
@@ -210,11 +215,28 @@ class Connect4(QDialog):
                                                          border: 2px solid black;
                                                          }}
                                                          ''')
+    
+    def instructions(self):
+        print("Reading Instructions")
 
-
-            
-
-        
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon('app/assets/ico4.png'))
+        msg.setText(
+            '<div style="text-align: center;">'
+            '<h2>Instructions</h2>'
+            '<br><br>'
+            '<h3>If 2 player game mode is selected [checkmark on bottom left]</h3>'
+            '<h3>simply choose column to place move one at a time.</h3><br>'
+            '<h3>When 2 player mode is not selected AI mode will be active, a random move will be generated for the automated player with current code.</h3><br>'
+            '<h3>Following Game over player 1 and 2 will switch order if in ai mode, with AI moving first from second game.</h3><br>'
+            '<h3>If you want to reset state completely press RESET GAME button.</h3><br>'
+            '<h3>You can change color of button for the 2 players during game, board state will recolor based on selection.</h3>'
+            '</div>'
+        )
+        msg.setWindowTitle('Instructions!')
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.raise_()
+        msg.exec_()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
