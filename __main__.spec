@@ -5,7 +5,7 @@ a = Analysis(
     ['connect4app\\__main__.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('connect4app/assets/*', 'connect4app/assets/')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -15,8 +15,6 @@ a = Analysis(
     optimize=0,
 )
 pyz = PYZ(a.pure)
-
-datas = [ ('connect4app\\assets\\*', 'assets') ]
 
 exe = EXE(
     pyz,
