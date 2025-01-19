@@ -10,8 +10,9 @@ from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
 
 class Connect4(QDialog):
     def __init__(self):
-        super().__init__()
-        uic.loadUi(os.path.join(os.getcwd(), 'connect4GUI.ui'), self)
+        super().__init__() # inerith from QDialog
+        uic.loadUi(os.path.join(os.getcwd(), 'connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
+        self.gameMode = None
         self.startGUI()
 
     def startGUI(self):
@@ -24,6 +25,10 @@ class Connect4(QDialog):
         self.currentPlayer = 1
         
         self.reset_button.clicked.connect(lambda: self.resetGame())
+
+        self.human_pc.stateChanged.connect(self.updateGameMode)
+
+        self.updateGameMode()
 
         self.buttons = []
         for row in range(self.numRows):
@@ -64,9 +69,9 @@ class Connect4(QDialog):
             col (_type_): _description_
         """
         if self.board[row, col] == 1:
-            self.buttons[row][col].setStyleSheet("background-color: red")
+            self.buttons[row][col].setStyleSheet("background-color: green")
         elif self.board[row, col] == 2:
-            self.buttons[row][col].setStyleSheet("background-color: blue")
+            self.buttons[row][col].setStyleSheet("background-color: yellow")
 
     def checkWin(self, row, col):
         """
@@ -120,8 +125,15 @@ class Connect4(QDialog):
         self.close()
         self.__init__()
 
+    def updateGameMode(self):
+        if self.human_pc.isChecked():
+            self.gameMode = 'human'
+        else:
+            self.gameMode = 'ai'
+        
+        print(f'Game Mode Set: {self.gameMode}')
+
     # TODO: Add computer player logic
-    # TODO: Switch from computer player to second human player
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
