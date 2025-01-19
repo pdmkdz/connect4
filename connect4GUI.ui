@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QCheckBox" name="human_pc">
+  <widget class="QCheckBox" name="human_ai">
    <property name="geometry">
     <rect>
      <x>40</x>
