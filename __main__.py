@@ -26,9 +26,9 @@ class Connect4(QDialog):
         
         self.reset_button.clicked.connect(lambda: self.resetGame())
 
-        self.human_pc.stateChanged.connect(self.updateGameMode)
+        self.human_ai.stateChanged.connect(lambda: self.updateGameMode())
 
-        self.updateGameMode()
+        self.updateGameMode() #set initial state by reading checkmark
 
         self.buttons = []
         for row in range(self.numRows):
@@ -126,7 +126,7 @@ class Connect4(QDialog):
         self.__init__()
 
     def updateGameMode(self):
-        if self.human_pc.isChecked():
+        if self.human_ai.isChecked():
             self.gameMode = 'human'
         else:
             self.gameMode = 'ai'
