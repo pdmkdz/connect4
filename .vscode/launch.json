@@ -12,7 +12,7 @@
                 "PYQTGRAPH_QT_LIB": "PyQt5",
                 "python": "${PYTHONPATH}"
               },
-              "program": "${workspaceFolder}/app/__main__.py",
+              "program": "${workspaceFolder}/connect4app/__main__.py",
               "console": "integratedTerminal",
               "justMyCode": true
         }

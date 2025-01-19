@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['connect4\\__main__.py'],
+    ['connect4app\\__main__.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -15,6 +15,8 @@ a = Analysis(
     optimize=0,
 )
 pyz = PYZ(a.pure)
+
+datas = [ ('connect4app\\assets\\*', 'assets') ]
 
 exe = EXE(
     pyz,
@@ -35,5 +37,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['connect4\\assets\\ico4.ico'],
+    icon=['connect4app\\assets\\ico4.ico'],
 )

@@ -15,11 +15,15 @@ Miniforge3 is recommended, but not essential for building this application.
 
 `conda activate connect_env`
 
+3) Install package
+
+`pip install -e .`
+
 3) Run it
 
-`python __main__.py`
+`python __main__.py` or un debug in VsCode as setup in .vscode folder
 
-You could setup a debug mode in VsCode like I did, check the `.vscode` folder for the setup.
+You could setup a debug mode in VsCode like I did, check the `.vscode` folder for the setup (should work on all machines [not tested on LINUX OS]).
 
 ### Contacts:
 If you want to contact me for questions or simply commenting or using this code for your own feel free to reach out thru [GIT](https://github.com/pdmkdz)

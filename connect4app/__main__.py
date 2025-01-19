@@ -1,6 +1,6 @@
 __author__= 'Michele DeL Zoppo'
 __copyright__='Unlicense'
-__version_number__='1.0.0'
+__version_number__='1.1.0'
 
 import sys
 import os
@@ -8,12 +8,19 @@ import numpy as np
 from PyQt5 import uic, QtGui
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
 from PyQt5.QtGui import QMovie
-from connect4.ai.ai_player import randomAI
+from connect4app.ai.ai_player import randomAI
+
+def resource_path(relative_path):
+    """This is needed to find all needed assets in the .exe file without needing to import all files manually and externally.
+    """
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 class Connect4(QDialog):
     def __init__(self):
         super().__init__() # inerith from QDialog
-        uic.loadUi(os.path.join(os.getcwd(), 'app/assets/connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
+        uic.loadUi(resource_path('connect4app\\assets\\connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
         self.gameMode = None
 
         # init dictionary with color pattern for players
@@ -31,7 +38,7 @@ class Connect4(QDialog):
 
     def startGUI(self):
 
-        self.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd(),'app/assets/ico4.png')))
+        self.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
 
         self.setWindowTitle(f'Connect 4 - v{__version_number__}')
 
@@ -52,7 +59,7 @@ class Connect4(QDialog):
 
         self.updateGameMode() #set initial state by reading checkmark
 
-        self.movie = QMovie(os.path.join(os.getcwd(), "app/assets/Connect_Four.gif"))
+        self.movie = QMovie(resource_path("connect4app\\assets\\Connect_Four.gif"))
         self.movie.start()
 
         self.ai_turn.setMovie(self.movie)
@@ -162,12 +169,12 @@ class Connect4(QDialog):
 
         msg = QMessageBox()
         # msg.setIcon(QMessageBox.Warning)
-        msg.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd(),'app/assets/ico4.png')))
+        msg.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
         msg.setText(
             f'<div style="text-align: center;">'
             f'<h3>Player {self.currentPlayer} wins!</h3>'
             f'<br><br>'
-            f'<img src="app/assets/win4.png" width="100" height="100">'
+            f'<img src="connect4app\\assets\\win4.png" width="100" height="100">'
             f'</div>'
         )
         msg.setWindowTitle('GAME OVER!')
@@ -220,7 +227,7 @@ class Connect4(QDialog):
         print("Reading Instructions")
 
         msg = QMessageBox()
-        msg.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd(),'app/assets/ico4.png')))
+        msg.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
         msg.setText(
             '<div style="text-align: center;">'
             '<h2>Instructions</h2>'

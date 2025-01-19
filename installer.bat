@@ -9,4 +9,4 @@
 @REM     __main__.py
 
 
-pyinstaller "connect4/__main__.py" --onefile --icon "connect4/assets/ico4.ico"
+pyinstaller __main__.spec --onefile --icon "connect4app/assets/ico4.ico"

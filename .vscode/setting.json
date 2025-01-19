@@ -6,7 +6,7 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./crosswatch",
+        "./connect4app",
         "-p",
         "*_test.py"
     ],
