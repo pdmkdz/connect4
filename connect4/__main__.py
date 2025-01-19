@@ -8,7 +8,7 @@ import numpy as np
 from PyQt5 import uic, QtGui
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
 from PyQt5.QtGui import QMovie
-from ai.ai_player import randomAI
+from connect4.ai.ai_player import randomAI
 
 class Connect4(QDialog):
     def __init__(self):
@@ -31,7 +31,7 @@ class Connect4(QDialog):
 
     def startGUI(self):
 
-        self.setWindowIcon(QtGui.QIcon('app/assets/ico4.png'))
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd(),'app/assets/ico4.png')))
 
         self.setWindowTitle(f'Connect 4 - v{__version_number__}')
 
@@ -162,7 +162,7 @@ class Connect4(QDialog):
 
         msg = QMessageBox()
         # msg.setIcon(QMessageBox.Warning)
-        msg.setWindowIcon(QtGui.QIcon('app/assets/ico4.png'))
+        msg.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd(),'app/assets/ico4.png')))
         msg.setText(
             f'<div style="text-align: center;">'
             f'<h3>Player {self.currentPlayer} wins!</h3>'
@@ -220,7 +220,7 @@ class Connect4(QDialog):
         print("Reading Instructions")
 
         msg = QMessageBox()
-        msg.setWindowIcon(QtGui.QIcon('app/assets/ico4.png'))
+        msg.setWindowIcon(QtGui.QIcon(os.path.join(os.getcwd(),'app/assets/ico4.png')))
         msg.setText(
             '<div style="text-align: center;">'
             '<h2>Instructions</h2>'

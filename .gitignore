@@ -1,2 +1,4 @@
 Connect_Four.md
 **/__pycache__/**
+build/**
+dist/**
