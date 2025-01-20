@@ -10,8 +10,10 @@ from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
 from PyQt5.QtGui import QMovie
 from connect4app.ai.ai_player import randomAI
 
+
 def resource_path(relative_path):
     """This is needed to find all needed assets in the .exe file without needing to import all files manually and externally.
+    see >> https://stackoverflow.com/questions/51264169/pyinstaller-add-folder-with-images-in-exe-file
     """
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
@@ -37,7 +39,8 @@ class Connect4(QDialog):
         self.startGUI()
 
     def startGUI(self):
-
+        """Initialize GUI and tracking BOARD.
+        """
         self.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
 
         self.setWindowTitle(f'Connect 4 - v{__version_number__}')
@@ -121,8 +124,8 @@ class Connect4(QDialog):
         Red for player 1 and blue for player 2.
 
         Args:
-            row (_type_): _description_
-            col (_type_): _description_
+            row (int): row of lsat move
+            col (int): column of last move
         """
         self.buttons[row][col].setStyleSheet(f'''
                 QPushButton {{
@@ -136,6 +139,10 @@ class Connect4(QDialog):
         """
         Checks if the current player has won the game by forming a line of 4
         starting from the specified (row, col) position.
+
+        Args:
+            row (int): row of last move
+            col (int): column of last move
         """
         # Directions: horizontal, vertical, diagonal (/), diagonal (\)
         directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
@@ -165,6 +172,8 @@ class Connect4(QDialog):
         return False
 
     def gameOver(self):
+        """Prints out in a QMessageBox the Winner player.
+        """
         print(f"Player {self.currentPlayer} wins!")
 
         msg = QMessageBox()
@@ -186,10 +195,14 @@ class Connect4(QDialog):
         self.__init__()
 
     def resetGame(self):
+        """Completely Resets Game state re initializing app.
+        """
         self.close()
         self.__init__()
 
     def updateGameMode(self):
+        """Updates the game mode from 2 player game to ai controlled second player.
+        """
         if self.human_ai.isChecked():
             self.gameMode = '2 players'
         else:
@@ -224,6 +237,8 @@ class Connect4(QDialog):
                                                          ''')
     
     def instructions(self):
+        """Shows up game instructions in a QMessageBox.
+        """
         print("Reading Instructions")
 
         msg = QMessageBox()

@@ -2,7 +2,6 @@ __author__= 'Michele DeL Zoppo'
 __copyright__='Unlicense'
 __version_number__='1.0.0'
 
-import os
 import random
 from PyQt5.QtCore import QTimer
 
