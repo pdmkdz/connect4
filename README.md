@@ -4,7 +4,7 @@ Got as an assignment for a job interview, and trying to have some fun with the t
 Using **PyQt5** and a full python application, 1 single BATCH file to run **[pyinstaller](https://pyinstaller.org/en/stable/index.html)**.  
 Managing enviroment thru **conda**, all libraries are from open source channels [conda-forge]  
 **[Miniforge3](https://conda-forge.org/miniforge/)** is recommended, but not essential for building this application.  
-Icons where downloaded from the free tier of 
+Icons where downloaded from the free tier of **[icons8.com](https://icons8.com/)**.
 
 ## How to setup environment:
 
@@ -27,6 +27,8 @@ Icons where downloaded from the free tier of
 ## DEBUG:
 
 * For Debug this app could setup a debug mode in VsCode like I did, check the `.vscode` folder for the setup (should work on all machines [not tested on LINUX OS]).
+
+* For more details on how to setup please check [DEBUG in VsCode](https://code.visualstudio.com/docs/editor/debugging)
 
 ## Packaging and usage:
 
