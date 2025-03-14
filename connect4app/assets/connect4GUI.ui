@@ -139,6 +139,16 @@
       </item>
       <item>
        <property name="text">
+        <string>black</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>magenta</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>green</string>
        </property>
       </item>
@@ -160,7 +170,17 @@
       </item>
       <item>
        <property name="text">
+        <string>purple</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>yellow</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>brown</string>
        </property>
       </item>
      </widget>
