@@ -25,40 +25,13 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QCheckBox" name="human_ai">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>500</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>2 players</string>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>18</width>
-     <height>18</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QPushButton" name="reset_button">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>510</y>
-     <width>241</width>
-     <height>71</height>
+     <x>270</x>
+     <y>540</y>
+     <width>201</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -86,7 +59,7 @@
     <rect>
      <x>520</x>
      <y>500</y>
-     <width>151</width>
+     <width>141</width>
      <height>91</height>
     </rect>
    </property>
@@ -100,87 +73,132 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="info">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>510</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Instructions</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>540</y>
-     <width>181</width>
-     <height>48</height>
+     <y>500</y>
+     <width>201</width>
+     <height>85</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QLabel" name="p1">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="p1">
+        <property name="text">
+         <string>Player 1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="p1color">
+        <item>
+         <property name="text">
+          <string>red</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>black</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>magenta</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>green</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p2">
+        <property name="text">
+         <string>Player 2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="p2color">
+        <item>
+         <property name="text">
+          <string>blue</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>purple</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>yellow</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>brown</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="info">
       <property name="text">
-       <string>Player 1</string>
+       <string>Instructions</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QComboBox" name="p1color">
-      <item>
-       <property name="text">
-        <string>red</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>black</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>magenta</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>green</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="p2">
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>500</y>
+     <width>186</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QCheckBox" name="human_ai">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Player 2</string>
+       <string>2 players</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QComboBox" name="p2color">
+    <item>
+     <widget class="QComboBox" name="ai_level">
       <item>
        <property name="text">
-        <string>blue</string>
+        <string>random</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>purple</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>yellow</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>brown</string>
+        <string>smart</string>
        </property>
       </item>
      </widget>
