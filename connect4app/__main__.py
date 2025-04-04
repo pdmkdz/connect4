@@ -1,14 +1,14 @@
 __author__= 'Michele DeL Zoppo'
 __copyright__='Unlicense'
-__version_number__='1.1.0'
+__version_number__='2.0.0'
 
 import sys
 import os
 import numpy as np
-from PyQt5 import uic, QtGui
+from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
-from PyQt5.QtGui import QMovie
-from connect4app.ai.ai_player import randomAI
+from PyQt5.QtGui import QMovie, QIcon
+from connect4app.ai.ai_player import randomAI, smartAI
 
 
 def resource_path(relative_path):
@@ -20,9 +20,9 @@ def resource_path(relative_path):
     return os.path.join(os.path.abspath("."), relative_path)
 
 class Connect4(QDialog):
-    def __init__(self):
+    def __init__(self, ai_level='random'):
         super().__init__() # inerith from QDialog
-        uic.loadUi(resource_path('connect4app\\assets\\connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
+        uic.loadUi(resource_path('connect4app/assets/connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
         self.gameMode = None
 
         # init dictionary with color pattern for players
@@ -35,13 +35,17 @@ class Connect4(QDialog):
             2: self.p2color.currentText() 
         }}
 
-        self.ai = randomAI(self)
-        self.startGUI()
+        if ai_level == 'random':
+            self.ai = randomAI(self)
+        elif ai_level == 'smart':
+            self.ai = smartAI(self)
 
-    def startGUI(self):
+        self.startGUI(ai_level=ai_level)
+
+    def startGUI(self, ai_level='random'):
         """Initialize GUI and tracking BOARD.
         """
-        self.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
+        self.setWindowIcon(QIcon(resource_path('connect4app/assets/ico4.png')))
 
         self.setWindowTitle(f'Connect 4 - v{__version_number__}')
 
@@ -58,11 +62,15 @@ class Connect4(QDialog):
         self.p1color.activated.connect(lambda: self.recolorBoard(1))
         self.p2color.activated.connect(lambda: self.recolorBoard(2))
 
+        self.ai_level.setCurrentText(ai_level)
+        
+        self.ai_level.activated.connect(lambda: self.setLevel(self.ai_level.currentText()))
+
         self.human_ai.stateChanged.connect(lambda: self.updateGameMode())
 
         self.updateGameMode() #set initial state by reading checkmark
 
-        self.movie = QMovie(resource_path("connect4app\\assets\\Connect_Four.gif"))
+        self.movie = QMovie(resource_path("connect4app/assets/Connect_Four.gif"))
         self.movie.start()
 
         self.ai_turn.setMovie(self.movie)
@@ -88,6 +96,18 @@ class Connect4(QDialog):
             self.buttons.append(rowButtons)
 
         self.show()
+
+    def setLevel(self, level):
+        """Sets the level of AI to be used for the game.
+
+        Args:
+            level (str): level of AI to be used.
+        """
+        if level == 'random':
+            self.ai = randomAI(self)
+        elif level == 'smart':
+            self.ai = smartAI(self)
+        print(f'AI Level Set: {level}')
 
     def if_ai_move(self, col):
         """Checks game mode and makes moves accordingly.
@@ -175,15 +195,15 @@ class Connect4(QDialog):
         """Prints out in a QMessageBox the Winner player.
         """
         print(f"Player {self.currentPlayer} wins!")
-
+        ico_path = "connect4app/assets/ico4.png"
         msg = QMessageBox()
         # msg.setIcon(QMessageBox.Warning)
-        msg.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
+        msg.setWindowIcon(QIcon(resource_path(ico_path)))
         msg.setText(
             f'<div style="text-align: center;">'
             f'<h3>Player {self.currentPlayer} wins!</h3>'
             f'<br><br>'
-            f'<img src="connect4app\\assets\\win4.png" width="100" height="100">'
+            f'<img src="{resource_path(ico_path)}" width="100" height="100">'
             f'</div>'
         )
         msg.setWindowTitle('GAME OVER!')
@@ -198,7 +218,7 @@ class Connect4(QDialog):
         """Completely Resets Game state re initializing app.
         """
         self.close()
-        self.__init__()
+        self.__init__(ai_level=self.ai_level.currentText())
 
     def updateGameMode(self):
         """Updates the game mode from 2 player game to ai controlled second player.
@@ -240,18 +260,19 @@ class Connect4(QDialog):
         """Shows up game instructions in a QMessageBox.
         """
         print("Reading Instructions")
-
+        ico_path = "connect4app/assets/ico4.png"
         msg = QMessageBox()
-        msg.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
+        msg.setWindowIcon(QIcon(resource_path(ico_path)))
         msg.setText(
             '<div style="text-align: center;">'
             '<h2>Instructions</h2>'
             '<br><br>'
+            f'<img src="{resource_path(ico_path)}" width="100" height="100">'
             '<h3>If 2 player game mode is selected [checkmark on bottom left]</h3>'
             '<h3>simply choose column to place move one at a time.</h3><br>'
-            '<h3>When 2 player mode is not selected AI mode will be active, a random move will be generated for the automated player with current code.</h3><br>'
+            '<h3>When 2 player mode is not selected AI mode will be active, the level of AI is set next to the checkmark.</h3><br>'
             '<h3>Following Game over player 1 and 2 will switch order if in ai mode, with AI moving first from second game.</h3><br>'
-            '<h3>If you want to reset state completely press RESET GAME button.</h3><br>'
+            '<h3>If you want to reset state completely press RESET GAME button, AI level will be kept.</h3><br>'
             '<h3>You can change color of button for the 2 players during game, board state will recolor based on selection.</h3>'
             '</div>'
         )
