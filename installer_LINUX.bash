@@ -1,5 +1,5 @@
 #!/bin/bash
-eval "$(conda shell.bash hook)"
+eval "$(conda shell.bash hook)" # Initialize conda for bash subsheells see: https://github.com/conda/conda/issues/7980
 # Activate the conda environment
 conda activate connect_env
 
