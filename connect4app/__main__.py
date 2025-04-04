@@ -5,10 +5,10 @@ __version_number__='1.1.0'
 import sys
 import os
 import numpy as np
-from PyQt5 import uic, QtGui
+from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
-from PyQt5.QtGui import QMovie
-from connect4app.ai.ai_player import randomAI
+from PyQt5.QtGui import QMovie, QIcon
+from connect4app.ai.ai_player import randomAI, smartAI
 
 
 def resource_path(relative_path):
@@ -20,7 +20,7 @@ def resource_path(relative_path):
     return os.path.join(os.path.abspath("."), relative_path)
 
 class Connect4(QDialog):
-    def __init__(self):
+    def __init__(self, ai_level='random'):
         super().__init__() # inerith from QDialog
         uic.loadUi(resource_path('connect4app\\assets\\connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
         self.gameMode = None
@@ -35,10 +35,14 @@ class Connect4(QDialog):
             2: self.p2color.currentText() 
         }}
 
-        self.ai = randomAI(self)
-        self.startGUI()
+        if ai_level == 'random':
+            self.ai = randomAI(self)
+        elif ai_level == 'smart':
+            self.ai = smartAI(self)
 
-    def startGUI(self):
+        self.startGUI(ai_level=ai_level)
+
+    def startGUI(self, ai_level='random'):
         """Initialize GUI and tracking BOARD.
         """
         self.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
@@ -57,6 +61,10 @@ class Connect4(QDialog):
 
         self.p1color.activated.connect(lambda: self.recolorBoard(1))
         self.p2color.activated.connect(lambda: self.recolorBoard(2))
+
+        self.ai_level.setCurrentText(ai_level)
+        
+        self.ai_level.activated.connect(lambda: self.setLevel(self.ai_level.currentText()))
 
         self.human_ai.stateChanged.connect(lambda: self.updateGameMode())
 
@@ -88,6 +96,18 @@ class Connect4(QDialog):
             self.buttons.append(rowButtons)
 
         self.show()
+
+    def setLevel(self, level):
+        """Sets the level of AI to be used for the game.
+
+        Args:
+            level (str): level of AI to be used.
+        """
+        if level == 'Random':
+            self.ai = randomAI(self)
+        elif level == 'Smart':
+            self.ai = smartAI(self)
+        print(f'AI Level Set: {level}')
 
     def if_ai_move(self, col):
         """Checks game mode and makes moves accordingly.
@@ -198,7 +218,7 @@ class Connect4(QDialog):
         """Completely Resets Game state re initializing app.
         """
         self.close()
-        self.__init__()
+        self.__init__(ai_level=self.ai_level.currentText())
 
     def updateGameMode(self):
         """Updates the game mode from 2 player game to ai controlled second player.
