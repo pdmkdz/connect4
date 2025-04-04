@@ -1,2 +1,0 @@
-[console_scripts]
-connect4app = connect4app.__main__:main

@@ -3,3 +3,4 @@ Connect_Four.md
 build/**
 dist/**
 connect4app.egg-info/**
+**/*.spec
