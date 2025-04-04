@@ -1,4 +1,6 @@
+LICENSE
 README.md
+pyproject.toml
 setup.py
 connect4app/__init__.py
 connect4app/__main__.py

@@ -1,6 +1,6 @@
 __author__= 'Michele DeL Zoppo'
 __copyright__='Unlicense'
-__version_number__='1.1.0'
+__version_number__='2.0.0'
 
 import sys
 import os
@@ -22,7 +22,7 @@ def resource_path(relative_path):
 class Connect4(QDialog):
     def __init__(self, ai_level='random'):
         super().__init__() # inerith from QDialog
-        uic.loadUi(resource_path('connect4app\\assets\\connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
+        uic.loadUi(resource_path('connect4app/assets/connect4GUI.ui'), self) # load UI file, which is easier to work with than building from code
         self.gameMode = None
 
         # init dictionary with color pattern for players
@@ -45,7 +45,7 @@ class Connect4(QDialog):
     def startGUI(self, ai_level='random'):
         """Initialize GUI and tracking BOARD.
         """
-        self.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
+        self.setWindowIcon(QIcon(resource_path('connect4app/assets/ico4.png')))
 
         self.setWindowTitle(f'Connect 4 - v{__version_number__}')
 
@@ -70,7 +70,7 @@ class Connect4(QDialog):
 
         self.updateGameMode() #set initial state by reading checkmark
 
-        self.movie = QMovie(resource_path("connect4app\\assets\\Connect_Four.gif"))
+        self.movie = QMovie(resource_path("connect4app/assets/Connect_Four.gif"))
         self.movie.start()
 
         self.ai_turn.setMovie(self.movie)
@@ -103,9 +103,9 @@ class Connect4(QDialog):
         Args:
             level (str): level of AI to be used.
         """
-        if level == 'Random':
+        if level == 'random':
             self.ai = randomAI(self)
-        elif level == 'Smart':
+        elif level == 'smart':
             self.ai = smartAI(self)
         print(f'AI Level Set: {level}')
 
@@ -195,15 +195,15 @@ class Connect4(QDialog):
         """Prints out in a QMessageBox the Winner player.
         """
         print(f"Player {self.currentPlayer} wins!")
-
+        ico_path = "connect4app/assets/ico4.png"
         msg = QMessageBox()
         # msg.setIcon(QMessageBox.Warning)
-        msg.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
+        msg.setWindowIcon(QIcon(resource_path(ico_path)))
         msg.setText(
             f'<div style="text-align: center;">'
             f'<h3>Player {self.currentPlayer} wins!</h3>'
             f'<br><br>'
-            f'<img src="connect4app\\assets\\win4.png" width="100" height="100">'
+            f'<img src="{resource_path(ico_path)}" width="100" height="100">'
             f'</div>'
         )
         msg.setWindowTitle('GAME OVER!')
@@ -260,13 +260,14 @@ class Connect4(QDialog):
         """Shows up game instructions in a QMessageBox.
         """
         print("Reading Instructions")
-
+        ico_path = "connect4app/assets/ico4.png"
         msg = QMessageBox()
-        msg.setWindowIcon(QtGui.QIcon(resource_path('connect4app\\assets\\ico4.png')))
+        msg.setWindowIcon(QIcon(resource_path(ico_path)))
         msg.setText(
             '<div style="text-align: center;">'
             '<h2>Instructions</h2>'
             '<br><br>'
+            f'<img src="{resource_path(ico_path)}" width="100" height="100">'
             '<h3>If 2 player game mode is selected [checkmark on bottom left]</h3>'
             '<h3>simply choose column to place move one at a time.</h3><br>'
             '<h3>When 2 player mode is not selected AI mode will be active, the level of AI is set next to the checkmark.</h3><br>'
