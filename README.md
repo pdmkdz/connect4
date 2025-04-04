@@ -10,7 +10,7 @@ Icons where downloaded from the free tier of **[icons8.com](https://icons8.com/)
 
 1)  Create Enviroment:
 
-`conda env create --file .\connect_env.yml`
+`conda env create --file connect_env.yml`
 
 2) Activate it
 
