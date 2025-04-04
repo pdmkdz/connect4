@@ -44,8 +44,6 @@ To be able to use Git on your local check the [tutorial](https://git-scm.com/boo
 
 ## Idea for future development:
 
-* Create a real AI player where moves are not simply random (this was enough to let my 2 years old play it and enjoy it)
-
 * Improve GUI to be looking more like a real Connect 4 board
 
 * Improve the error handling after longer testing, I was not really pushing to have something perfect, just needed to complete the assignment and have fun with it showcasing some of my coding skills.
