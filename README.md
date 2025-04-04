@@ -1,7 +1,7 @@
 # Connect 4 in PyQt5 by Michele Del Zoppo
 
-Got as an assignment for a job interview, and trying to have some fun with the tools and skills I know, this project was completed in **~8h** of work.  
-Using **PyQt5** and a full python application, 1 single BATCH file to run **[pyinstaller](https://pyinstaller.org/en/stable/index.html)**.  
+Got as an assignment for a job interview, and trying to have some fun with the tools and skills I know, this project was completed in **~10h** of work.  
+Using **PyQt5** to setup GUI, batch and bash files to run **[pyinstaller](https://pyinstaller.org/en/stable/index.html)** on both Windows and Linux.  
 Managing enviroment thru **conda**, all libraries are from open source channels [conda-forge]  
 **[Miniforge3](https://conda-forge.org/miniforge/)** is recommended, but not essential for building this application.  
 Icons where downloaded from the free tier of **[icons8.com](https://icons8.com/)**.
