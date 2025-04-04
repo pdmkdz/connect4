@@ -269,9 +269,9 @@ class Connect4(QDialog):
             '<br><br>'
             '<h3>If 2 player game mode is selected [checkmark on bottom left]</h3>'
             '<h3>simply choose column to place move one at a time.</h3><br>'
-            '<h3>When 2 player mode is not selected AI mode will be active, a random move will be generated for the automated player with current code.</h3><br>'
+            '<h3>When 2 player mode is not selected AI mode will be active, the level of AI is set next to the checkmark.</h3><br>'
             '<h3>Following Game over player 1 and 2 will switch order if in ai mode, with AI moving first from second game.</h3><br>'
-            '<h3>If you want to reset state completely press RESET GAME button.</h3><br>'
+            '<h3>If you want to reset state completely press RESET GAME button, AI level will be kept.</h3><br>'
             '<h3>You can change color of button for the 2 players during game, board state will recolor based on selection.</h3>'
             '</div>'
         )
